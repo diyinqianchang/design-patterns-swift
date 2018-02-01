@@ -34,14 +34,15 @@ class CellConfigurationCommand: Command<TableViewCell> {
         
         // Associating urlString value with cell to keep downloading and image setup in sync
         objc_setAssociatedObject(cell, &associatedURLStringKey, urlString, .OBJC_ASSOCIATION_COPY_NONATOMIC)
-        task = imageProvider.load(from: urlString, { (result, url) in
+        
+        task = imageProvider.load(from: urlString, { [weak self] (result, url) in
             
             switch result {
             case .success(let image):
                 
                 // checking the associated urlString (syncing)
                 if let previousURLString = objc_getAssociatedObject(cell, &associatedURLStringKey) as? String {
-                    if previousURLString == self.urlString {
+                    if previousURLString == self?.urlString {
                         
                         async(.main, { cell.dummyImageView.image = image })
                     }

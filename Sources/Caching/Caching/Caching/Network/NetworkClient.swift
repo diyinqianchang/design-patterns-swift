@@ -22,15 +22,15 @@ struct NetworkClient: NetworkClientProtocol {
     }
     
     func load(from url: URL, callback: @escaping (Result<Data>) -> Void) -> URLSessionTask {
+        
         let task = session.dataTask(with: url) { (data, response, error) in
+            
             callback(Result.init{
-                
-                // proper http response handling should be provided...
+                // proper response handling (http code) should be provided...
                 // omitted for brevity
                 
                 if let error = error { throw error }
                 guard let data = data else { throw HTTPError.noData }
-                
                 return data
             })
         }

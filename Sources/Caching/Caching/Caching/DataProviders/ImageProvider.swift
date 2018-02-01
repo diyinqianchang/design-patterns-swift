@@ -43,13 +43,14 @@ final class ImageProvider {
             }
             
             // if no image in cache - download it:
-            task = self.httpClient.load(from: url, callback: { result in
+            task = self.httpClient.load(from: url, callback: { [weak self] result in
+                
                 switch result {
                 case .success(let data):
                     if let image = UIImage(data: data) {
                         
                         print("Got image from network")
-                        self.cache.setObject(image as AnyObject, forKey: urlString as NSString)
+                        self?.cache.setObject(image as AnyObject, forKey: urlString as NSString)
                         completion(.success(image), urlString)
                         
                     } else {
