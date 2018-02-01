@@ -10,7 +10,7 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 ------------ | ------------- | ------------- | ------------- |  ------------- |
 [Chain of Responsibility](https://git.io/vNH7g) | [Factory Method](https://git.io/vNH7o) | [Facade](https://git.io/vNH7i) | [Dependency Injection](https://git.io/vNH71) | [Functor](https://git.io/vNH7S) |
 [Strategy]() |[Abstract Factory](https://git.io) | [Decorator](https://git.io/vNH5v) | [Object Pool](https://git.io/vNH5U) | Applicative  
-[Command](https://git.io/vNH5I) | [Singleton](https://git.io/vNH5t) | [Proxy](https://git.io/vNH5Y)  |  Caching | Monad 
+[Command](https://git.io/vNH5I) | [Singleton](https://git.io/vNH5t) | [Proxy](https://git.io/vNH5Y)  |  [Caching](https://github.com/oleh-zayats/design-patterns-swift/tree/master/Sources/Caching/Caching) | Monad 
 [State](https://git.io/vNH5G) | [Builder](https://git.io/vNH5n) | [Adapter](https://git.io/vNH5C) | [Private Class Data](https://git.io/vNH5l) | Callback
 [Observer](https://git.io/vNH54) | [Prototype](https://git.io/vNH5R) | [Flyweight](https://git.io/vNH5E) | [Delegate](https://git.io/vNH5u) | Factory Kit 
 [Memento](https://git.io/vNH5z)| | Bridge | [Multicast Delegate](https://git.io/vNH5i) | [Future & Promise](https://git.io/vNH5D)
