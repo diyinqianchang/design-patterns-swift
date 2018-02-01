@@ -7,19 +7,19 @@ enum EngineeringLevel {
 
 protocol SoftwareEngineerCompetencyMatrix {}
 
-class JuniorSEMatrix: SoftwareEngineerCompetencyMatrix {}
-class MiddleSEMatrix: SoftwareEngineerCompetencyMatrix {}
-class SeniorSEMatrix: SoftwareEngineerCompetencyMatrix {}
+class JuniorSECompetencyMatrix: SoftwareEngineerCompetencyMatrix {}
+class MiddleSECompetencyMatrix: SoftwareEngineerCompetencyMatrix {}
+class SeniorSECompetencyMatrix: SoftwareEngineerCompetencyMatrix {}
 
 protocol QACompetencyMatrix {}
 
-class JuniorQAMatrix: QACompetencyMatrix {}
-class MiddleQAMatrix: QACompetencyMatrix {}
-class SeniorQAMatrix: QACompetencyMatrix {}
+class JuniorQACompetencyMatrix: QACompetencyMatrix {}
+class MiddleQACompetencyMatrix: QACompetencyMatrix {}
+class SeniorQACompetencyMatrix: QACompetencyMatrix {}
 
 protocol CompetencyMatrix {
-    func softwareEngineerMatrix() -> SoftwareEngineerCompetencyMatrix
-    func qaEngineerMatrix() -> QACompetencyMatrix
+    func softwareEngineerCompetencyMatrix() -> SoftwareEngineerCompetencyMatrix
+    func qaEngineerCompetencyMatrix() -> QACompetencyMatrix
 }
 
 /* Abstract Factory */
@@ -28,9 +28,9 @@ protocol Company {
 }
 
 final class Facebook: Company {
-    private let juniorMatrix = JuniorMatrix()
-    private let middleMatrix = MiddleMatrix()
-    private let seniorMatrix = SeniorMatrix()
+    private let juniorMatrix = JuniorCompetencyMatrix()
+    private let middleMatrix = MiddleCompetencyMatrix()
+    private let seniorMatrix = SeniorCompetencyMatrix()
     
     /* Factory Method */
     func resources(_ level: EngineeringLevel) -> CompetencyMatrix {
@@ -45,41 +45,40 @@ final class Facebook: Company {
     }
 }
 
-final class JuniorMatrix: CompetencyMatrix {
-    func softwareEngineerMatrix() -> SoftwareEngineerCompetencyMatrix {
-        return JuniorSEMatrix()
+final class JuniorCompetencyMatrix: CompetencyMatrix {
+    func softwareEngineerCompetencyMatrix() -> SoftwareEngineerCompetencyMatrix {
+        return JuniorSECompetencyMatrix()
     }
     
-    func qaEngineerMatrix() -> QACompetencyMatrix {
-        return JuniorQAMatrix()
+    func qaEngineerCompetencyMatrix() -> QACompetencyMatrix {
+        return JuniorQACompetencyMatrix()
     }
 }
 
-final class MiddleMatrix: CompetencyMatrix {
-    func softwareEngineerMatrix() -> SoftwareEngineerCompetencyMatrix {
-        return MiddleSEMatrix()
+final class MiddleCompetencyMatrix: CompetencyMatrix {
+    func softwareEngineerCompetencyMatrix() -> SoftwareEngineerCompetencyMatrix {
+        return MiddleSECompetencyMatrix()
     }
     
-    func qaEngineerMatrix() -> QACompetencyMatrix {
-        return MiddleQAMatrix()
+    func qaEngineerCompetencyMatrix() -> QACompetencyMatrix {
+        return MiddleQACompetencyMatrix()
     }
 }
 
-final class SeniorMatrix: CompetencyMatrix {
-    func softwareEngineerMatrix() -> SoftwareEngineerCompetencyMatrix {
-        return SeniorSEMatrix()
+final class SeniorCompetencyMatrix: CompetencyMatrix {
+    func softwareEngineerCompetencyMatrix() -> SoftwareEngineerCompetencyMatrix {
+        return SeniorSECompetencyMatrix()
     }
     
-    func qaEngineerMatrix() -> QACompetencyMatrix {
-        return SeniorQAMatrix()
+    func qaEngineerCompetencyMatrix() -> QACompetencyMatrix {
+        return SeniorQACompetencyMatrix()
     }
 }
 
 /* Usage: */
 
-let facebook: Company = Facebook()
+let company: Company = Facebook()
 
-/* info */
-let seniorQA = facebook.resources(.senior).qaEngineerMatrix()
-let midSE = facebook.resources(.middle).softwareEngineerMatrix()
+let seniorQA = company.resources(.senior).qaEngineerCompetencyMatrix()
+let middleSE = company.resources(.middle).softwareEngineerCompetencyMatrix()
 
