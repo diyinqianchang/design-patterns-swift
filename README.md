@@ -19,7 +19,7 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 [Iterator](https://git.io/vNH59)| | Composite | [DataSource](https://git.io/vNH55)
 [Template Method](https://git.io/vNbdh) |  |  | [Lazy Loading](https://git.io/vNH5F)
 [Mediator](https://git.io/vNH5b) |  |  | [Throttling](https://git.io/vNH5N)
-Interpreter |  |  | 
+[Interpreter](https://git.io/vNbAk) |  |  | 
 [Visitor](https://git.io/vNH5p)  |  |  | 
 
 ### Overview 
@@ -37,7 +37,7 @@ Each pattern is overviewed in a separate Markdown file which contains descriptio
 [Memento](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Memento/Memento.md) </br> 
 [Template Method](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/TemplateMethod/TemplateMethod.md) </br> 
 [Mediator](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Mediator/Mediator.md) </br> 
-Interpreter</br> 
+[Interpreter](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Interpreter/Interpreter.md)</br> 
 [Visitor](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Visitor/Visitor.md) </br> 
 
 👷🏼 Creational </br> 
