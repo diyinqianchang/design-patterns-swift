@@ -1,6 +1,8 @@
 ![alt text](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Art/art_title_image.png)
 
-![](https://img.shields.io/badge/Licence-MIT-blue.svg) ![](https://img.shields.io/badge/Swift-4.0-orange.svg)
+![](https://img.shields.io/badge/Licence-MIT-blue.svg)  ![](https://img.shields.io/badge/Swift-4.0-orange.svg)  ![](https://travis-ci.org/oleh-zayats/design-patterns-swift.svg?branch=master)
+
+
 
 An open-source repo of design pattern implementations in Swift programming language. </br> 
 All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-swift/tree/master/Sources). Check out the table below for convenience.
