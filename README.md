@@ -17,7 +17,7 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 [Observer](https://git.io/vNH54) | [Prototype](https://git.io/vNH5R) | [Flyweight](https://git.io/vNH5E) | [Delegate](https://git.io/vNH5u) | Factory Kit 
 [Memento](https://git.io/vNH5z)| | Bridge | [Multicast Delegate](https://git.io/vNH5i) | [Future & Promise](https://git.io/vNH5D)
 [Iterator](https://git.io/vNH59)| | Composite | [DataSource](https://git.io/vNH55)
-Template Method |  |  | [Lazy Loading](https://git.io/vNH5F)
+[Template Method](https://git.io/vNbdh) |  |  | [Lazy Loading](https://git.io/vNH5F)
 [Mediator](https://git.io/vNH5b) |  |  | [Throttling](https://git.io/vNH5N)
 Interpreter |  |  | 
 [Visitor](https://git.io/vNH5p)  |  |  | 
@@ -35,7 +35,7 @@ Each pattern is overviewed in a separate Markdown file which contains descriptio
 [Observer](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Observer/Observer.md) </br> 
 [Iterator](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Iterator/Iterator.md) </br> 
 [Memento](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Memento/Memento.md) </br> 
-Template Method </br> 
+[Template Method](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/TemplateMethod/TemplateMethod.md) </br> 
 [Mediator](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Mediator/Mediator.md) </br> 
 Interpreter</br> 
 [Visitor](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Visitor/Visitor.md) </br> 
