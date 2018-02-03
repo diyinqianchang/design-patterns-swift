@@ -1,21 +1,23 @@
 
 import Foundation
 
+/* Implementation */
+
 enum EngineeringLevel {
     case junior, middle, senior
 }
 
 protocol SoftwareEngineerCompetencyMatrix {}
 
-class JuniorSECompetencyMatrix: SoftwareEngineerCompetencyMatrix {}
-class MiddleSECompetencyMatrix: SoftwareEngineerCompetencyMatrix {}
-class SeniorSECompetencyMatrix: SoftwareEngineerCompetencyMatrix {}
+struct JuniorSECompetencyMatrix: SoftwareEngineerCompetencyMatrix {}
+struct MiddleSECompetencyMatrix: SoftwareEngineerCompetencyMatrix {}
+struct SeniorSECompetencyMatrix: SoftwareEngineerCompetencyMatrix {}
 
 protocol QACompetencyMatrix {}
 
-class JuniorQACompetencyMatrix: QACompetencyMatrix {}
-class MiddleQACompetencyMatrix: QACompetencyMatrix {}
-class SeniorQACompetencyMatrix: QACompetencyMatrix {}
+struct JuniorQACompetencyMatrix: QACompetencyMatrix {}
+struct MiddleQACompetencyMatrix: QACompetencyMatrix {}
+struct SeniorQACompetencyMatrix: QACompetencyMatrix {}
 
 protocol CompetencyMatrix {
     func softwareEngineerCompetencyMatrix() -> SoftwareEngineerCompetencyMatrix
@@ -27,25 +29,21 @@ protocol Company {
     func resources(_ level: EngineeringLevel) -> CompetencyMatrix
 }
 
-final class Facebook: Company {
-    private let juniorMatrix = JuniorCompetencyMatrix()
-    private let middleMatrix = MiddleCompetencyMatrix()
-    private let seniorMatrix = SeniorCompetencyMatrix()
-    
+struct Facebook: Company {
     /* Factory Method */
     func resources(_ level: EngineeringLevel) -> CompetencyMatrix {
         switch level {
         case .junior:
-            return juniorMatrix
+            return JuniorCompetencyMatrix()
         case .middle:
-            return middleMatrix
+            return MiddleCompetencyMatrix()
         case .senior:
-            return seniorMatrix
+            return SeniorCompetencyMatrix()
         }
     }
 }
 
-final class JuniorCompetencyMatrix: CompetencyMatrix {
+struct JuniorCompetencyMatrix: CompetencyMatrix {
     func softwareEngineerCompetencyMatrix() -> SoftwareEngineerCompetencyMatrix {
         return JuniorSECompetencyMatrix()
     }
@@ -55,7 +53,7 @@ final class JuniorCompetencyMatrix: CompetencyMatrix {
     }
 }
 
-final class MiddleCompetencyMatrix: CompetencyMatrix {
+struct MiddleCompetencyMatrix: CompetencyMatrix {
     func softwareEngineerCompetencyMatrix() -> SoftwareEngineerCompetencyMatrix {
         return MiddleSECompetencyMatrix()
     }
@@ -65,7 +63,7 @@ final class MiddleCompetencyMatrix: CompetencyMatrix {
     }
 }
 
-final class SeniorCompetencyMatrix: CompetencyMatrix {
+struct SeniorCompetencyMatrix: CompetencyMatrix {
     func softwareEngineerCompetencyMatrix() -> SoftwareEngineerCompetencyMatrix {
         return SeniorSECompetencyMatrix()
     }
@@ -78,7 +76,6 @@ final class SeniorCompetencyMatrix: CompetencyMatrix {
 /* Usage: */
 
 let company: Company = Facebook()
-
 let seniorQA = company.resources(.senior).qaEngineerCompetencyMatrix()
 let middleSE = company.resources(.middle).softwareEngineerCompetencyMatrix()
 

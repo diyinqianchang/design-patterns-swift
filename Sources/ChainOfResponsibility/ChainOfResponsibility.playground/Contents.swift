@@ -154,9 +154,8 @@ let backlog: [JiraItem] = [
 
 /* Work!  */
 backlog.forEach {
-    
     /* Will resolve task or find more competent mate and hand it over */
-    juniors.tryToResolve(task)
+    let _ = juniors.tryToResolve($0)
 }
 
 

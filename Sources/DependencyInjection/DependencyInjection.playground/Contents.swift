@@ -7,12 +7,12 @@ protocol Serializer {
     func serialize(_ data: Data)
 }
 
-class DataSerializer: Serializer {
+struct DataSerializer: Serializer {
     init() { }
     func serialize(_ data: Data) { }
 }
 
-final class DataManager {
+struct DataManager {
     private let serializer: Serializer
     
     init(with serializer: Serializer) {
@@ -58,7 +58,6 @@ struct Data { }
 // viewController becomes a mess, hard to test and maintain. So we can use an initializer instead:
 
 class ViewController: UIViewController {
-
     private let data: Data
     
     init(with data: Data) {

@@ -18,7 +18,7 @@ extension Animatable where Self: CALayer {
 
 typealias AnimatableLayer = CALayer & Animatable
 
-final class AnimatableLayerFactory {
+struct AnimatableLayerFactory {
     static func layer(withFrame frame: CGRect, animation: AnimationType) -> AnimatableLayer {
         switch animation {
         case .bounce:
@@ -109,7 +109,7 @@ extension PoppingLayer: Animatable {
     }
 }
 
-// usage:
+/* Usage: */
 
 class ViewController: UIViewController {
     

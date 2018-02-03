@@ -13,7 +13,7 @@ protocol EBookProtocol {
 
 /* Concrete classes */
 
-class Kindle: EBookProtocol {
+struct Kindle: EBookProtocol {
     func pressStart() {
         print("Kindle book launched!")
     }
@@ -23,7 +23,7 @@ class Kindle: EBookProtocol {
     }
 }
 
-class PaperBook: PaperBookProtocol {
+struct PaperBook: PaperBookProtocol {
     func open() {
         print("Opened a paper book. Oh that feeling!")
     }
@@ -35,7 +35,7 @@ class PaperBook: PaperBookProtocol {
 
 /* Adapter implementation */
 
-final class EBookAdapter: PaperBookProtocol {
+struct EBookAdapter: PaperBookProtocol {
     private let eBook: EBookProtocol
     
     init(eBook: EBookProtocol) {

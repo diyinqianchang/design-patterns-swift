@@ -5,6 +5,8 @@ protocol Potion {
     func drink()
 }
 
+/* Heavy classes (let's imagine that) */
+
 final class HealingPotion: Potion {
     func drink() {
         print("You feel healed.")
@@ -23,7 +25,7 @@ final class InvisibilityPotion: Potion {
     }
 }
 
-// Flyweight object is the factory for creating potions
+/* Flyweight object is the factory for creating potions */
 
 enum PotionType {
     case healing, holyWater, invisibility
