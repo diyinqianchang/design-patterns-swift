@@ -14,12 +14,12 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 [Strategy](https://git.io/vNdul) |[Abstract Factory](https://git.io/vNdu0) | [Decorator](https://git.io/vNH5v) | [Object Pool](https://git.io/vNH5U) | Applicative  
 [Command](https://git.io/vNH5I) | [Singleton](https://git.io/vNH5t) | [Proxy](https://git.io/vNH5Y)  |  [Caching](https://github.com/oleh-zayats/design-patterns-swift/tree/master/Sources/Caching/Caching) | Monad 
 [State](https://git.io/vNH5G) | [Builder](https://git.io/vNH5n) | [Adapter](https://git.io/vNH5C) | [Private Class Data](https://git.io/vNH5l) | Callback
-[Observer](https://git.io/vNH54) | [Prototype](https://git.io/vNH5R) | [Flyweight](https://git.io/vNH5E) | [Delegate](https://git.io/vNH5u) | Factory Kit 
-[Memento](https://git.io/vNH5z)| | [Bridge](https://git.io/vNAFD) | [Multicast Delegate](https://git.io/vNH5i) | [Future & Promise](https://git.io/vNH5D)
+[Observer](https://git.io/vNH54) | [Prototype](https://git.io/vNH5R) | [Flyweight](https://git.io/vNH5E) | [Delegate](https://git.io/vNH5u) | [Future & Promise](https://git.io/vNH5D)
+[Memento](https://git.io/vNH5z)| | [Bridge](https://git.io/vNAFD) | [Multicast Delegate](https://git.io/vNH5i) | 
 [Iterator](https://git.io/vNH59)| | [Composite](https://git.io/vNAdE) | [DataSource](https://git.io/vNH55)
 [Template Method](https://git.io/vNbdh) |  |  | [Lazy Loading](https://git.io/vNH5F)
 [Mediator](https://git.io/vNH5b) |  |  | [Throttling](https://git.io/vNH5N)
-[Interpreter](https://git.io/vNbAk) |  |  | 
+[Interpreter](https://git.io/vNbAk) |  |  | [Debouncing](https://git.io/vNxZX)
 [Visitor](https://git.io/vNH5p)  |  |  | 
 
 ### Overview 
@@ -72,6 +72,7 @@ Each pattern is overviewed in a separate Markdown file which contains descriptio
 [DataSource](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/DataSource/DataSource.md) </br> 
 [Lazy Loading](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/LazyLoading/LazyLoading.md) </br> 
 [Throttling](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Throttling/Throttling.md)
+[Debouncing](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Debounce/Debounce.md)
 
 👨🏻‍🔬 Functional </br> 
 > Design patterns that come from functional programming.
