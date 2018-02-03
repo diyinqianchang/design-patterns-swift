@@ -15,7 +15,7 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 [Command](https://git.io/vNH5I) | [Singleton](https://git.io/vNH5t) | [Proxy](https://git.io/vNH5Y)  |  [Caching](https://github.com/oleh-zayats/design-patterns-swift/tree/master/Sources/Caching/Caching) | Monad 
 [State](https://git.io/vNH5G) | [Builder](https://git.io/vNH5n) | [Adapter](https://git.io/vNH5C) | [Private Class Data](https://git.io/vNH5l) | Callback
 [Observer](https://git.io/vNH54) | [Prototype](https://git.io/vNH5R) | [Flyweight](https://git.io/vNH5E) | [Delegate](https://git.io/vNH5u) | Factory Kit 
-[Memento](https://git.io/vNH5z)| | Bridge | [Multicast Delegate](https://git.io/vNH5i) | [Future & Promise](https://git.io/vNH5D)
+[Memento](https://git.io/vNH5z)| | [Bridge](https://git.io/vNAFD) | [Multicast Delegate](https://git.io/vNH5i) | [Future & Promise](https://git.io/vNH5D)
 [Iterator](https://git.io/vNH59)| | [Composite](https://git.io/vNAdE) | [DataSource](https://git.io/vNH55)
 [Template Method](https://git.io/vNbdh) |  |  | [Lazy Loading](https://git.io/vNH5F)
 [Mediator](https://git.io/vNH5b) |  |  | [Throttling](https://git.io/vNH5N)
@@ -58,7 +58,7 @@ Each pattern is overviewed in a separate Markdown file which contains descriptio
 [Proxy](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Proxy/Proxy.md) </br> 
 [Adapter](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Adapter/Adapter.md) </br> 
 [Flyweight](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Flyweight/Flyweight.md) </br> 
-Bridge </br> 
+[Bridge](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Bridge/Bridge.md) </br> 
 [Composite](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Composite/Composite.md) </br> 
 
 👨🏼‍🎓 Non-GOF </br> 
