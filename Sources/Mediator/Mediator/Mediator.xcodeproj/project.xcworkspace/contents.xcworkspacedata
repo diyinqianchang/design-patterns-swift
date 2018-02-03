@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Mediator.xcodeproj">
+      location = "self:/Users/Admin/design-patterns-swift/Sources/Mediator/Mediator/Mediator.xcodeproj">
    </FileRef>
 </Workspace>
