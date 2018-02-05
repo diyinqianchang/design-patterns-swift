@@ -79,7 +79,6 @@ Each pattern is overviewed in a separate Markdown file which contains descriptio
 
 Monad </br> 
 [Future & Promise](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/FuturePromise/FuturePromise.md) </br> 
-Factory Kit </br> 
 [Callback](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Callback/Callback.md) </br> 
 [Functor](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Functor/Functor.md) </br> 
 Applicative Functor </br> 
