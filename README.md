@@ -3,12 +3,12 @@
 ![](https://img.shields.io/badge/Licence-MIT-blue.svg)  ![](https://img.shields.io/badge/Swift-4.0-orange.svg)  ![](https://travis-ci.org/oleh-zayats/design-patterns-swift.svg?branch=master)
 
 
-
 An open-source repo of design pattern implementations in Swift programming language. </br> 
 All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-swift/tree/master/Sources). Check out the table below for convenience.
 
-### Table of Implementations
-👮🏼 Behavioural              | 👷🏼 Creational      | 👨🏼‍🏭 Structural    | 👨🏼‍🎓 Non-GOF | 👨🏻‍🔬 Functional |
+## Table of Implementations: </br> 
+
+👮🏼 Behavioural  | 👷🏼 Creational      | 👨🏼‍🏭 Structural    | 👨🏼‍🎓 Non-GOF | 👨🏻‍🔬 Functional |
 ------------ | ------------- | ------------- | ------------- |  ------------- |
 [Chain of Responsibility](https://git.io/vNH7g) | [Factory Method](https://git.io/vNH7o) | [Facade](https://git.io/vNH7i) | [Dependency Injection](https://git.io/vNH71) | [Functor](https://git.io/vNH7S) |
 [Strategy](https://git.io/vNdul) |[Abstract Factory](https://git.io/vNdu0) | [Decorator](https://git.io/vNH5v) | [Object Pool](https://git.io/vNH5U) | [Applicative](https://git.io/vNh7D) 
@@ -22,7 +22,16 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 [Interpreter](https://git.io/vNbAk) |  |  | [Debouncing](https://git.io/vNxZX)
 [Visitor](https://git.io/vNH5p)  |  |  | 
 
-### Overview 
+| 🚥 Concurrency |
+------------ |
+| [Promise](https://git.io/vNH5D) |
+| Balking |   
+| Guarded Suspension |
+| Mutex |
+| Semaphore |
+| Reader Writer Lock |
+
+### Pattern Overview 
 Each pattern is overviewed in a separate Markdown file which contains description, structure, UML, advantages/disadvantages etc. Click on a pattern title to see more.
 
 👮🏼 Behavioural </br> 
@@ -82,3 +91,13 @@ Monad </br>
 [Callback](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Callback/Callback.md) </br> 
 [Functor](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Functor/Functor.md) </br> 
 [Applicative](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Applicative/Applicative.md) </br> 
+
+🚥 Concurrency </br> 
+> Concurrent programming patterns. </br> 
+
+[Promise](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/FuturePromise/FuturePromise.md) </br> 
+Balking </br> 
+Guarded Suspension </br> 
+Mutex </br> 
+Semaphore </br> 
+Reader Writer Lock </br> 
