@@ -12,7 +12,7 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 ------------ | ------------- | ------------- | ------------- |  ------------- |
 [Chain of Responsibility](https://git.io/vNH7g) | [Factory Method](https://git.io/vNH7o) | [Facade](https://git.io/vNH7i) | [Dependency Injection](https://git.io/vNH71) | [Functor](https://git.io/vNH7S) |
 [Strategy](https://git.io/vNdul) |[Abstract Factory](https://git.io/vNdu0) | [Decorator](https://git.io/vNH5v) | [Object Pool](https://git.io/vNH5U) | [Applicative](https://git.io/vNh7D) 
-[Command](https://git.io/vNH5I) | [Singleton](https://git.io/vNH5t) | [Proxy](https://git.io/vNH5Y)  |  [Caching](https://github.com/oleh-zayats/design-patterns-swift/tree/master/Sources/Caching/Caching) | Monad 
+[Command](https://git.io/vNH5I) | [Singleton](https://git.io/vNH5t) | [Proxy](https://git.io/vNH5Y)  |  [Caching](https://github.com/oleh-zayats/design-patterns-swift/tree/master/Sources/Caching/Caching) | [Monad](https://git.io/vAeKb) 
 [State](https://git.io/vNH5G) | [Builder](https://git.io/vNH5n) | [Adapter](https://git.io/vNH5C) | [Private Class Data](https://git.io/vNH5l) | [Callback](https://git.io/vNhSY)
 [Observer](https://git.io/vNH54) | [Prototype](https://git.io/vNH5R) | [Flyweight](https://git.io/vNH5E) | [Delegate](https://git.io/vNH5u) | [Future & Promise](https://git.io/vNH5D)
 [Memento](https://git.io/vNH5z)| | [Bridge](https://git.io/vNAFD) | [Multicast Delegate](https://git.io/vNH5i) | 
@@ -86,7 +86,7 @@ Each pattern is overviewed in a separate Markdown file which contains descriptio
 👨🏻‍🔬 Functional </br> 
 > Design patterns that come from functional programming.
 
-Monad </br> 
+[Monad](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Monad/Monad.md) </br> 
 [Future & Promise](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/FuturePromise/FuturePromise.md) </br> 
 [Callback](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Callback/Callback.md) </br> 
 [Functor](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Functor/Functor.md) </br> 
