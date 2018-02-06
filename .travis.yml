@@ -9,7 +9,7 @@ before_script:
 script: 
   wl=https://github.com/,http://git.io/
   
-  awesome_bot README.md --allow-redirect --white-list $wl
+  awesome_bot README.md --allow-redirect --allow-dupe --white-list $wl
 
 notifications:
   email: false
