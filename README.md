@@ -10,12 +10,12 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 
 👮🏼 Behavioural  | 👷🏼 Creational      | 👨🏼‍🏭 Structural    | 👨🏼‍🎓 Non-GOF | 👨🏻‍🔬 Functional |
 ------------ | ------------- | ------------- | ------------- |  ------------- |
-[Chain of Responsibility](https://git.io/vNH7g) | [Factory Method](https://git.io/vNH7o) | [Facade](https://git.io/vNH7i) | [Dependency Injection](https://git.io/vNH71) | [Functor](https://git.io/vNH7S) |
-[Strategy](https://git.io/vNdul) |[Abstract Factory](https://git.io/vNdu0) | [Decorator](https://git.io/vNH5v) | [Object Pool](https://git.io/vNH5U) | [Applicative](https://git.io/vNh7D) 
-[Command](https://git.io/vNH5I) | [Singleton](https://git.io/vNH5t) | [Proxy](https://git.io/vNH5Y)  |  [Caching](https://github.com/oleh-zayats/design-patterns-swift/tree/master/Sources/Caching/Caching) | [Monad](https://git.io/vAeKb) 
-[State](https://git.io/vNH5G) | [Builder](https://git.io/vNH5n) | [Adapter](https://git.io/vNH5C) | [Private Class Data](https://git.io/vNH5l) | [Future & Promise](https://git.io/vNH5D) 
-[Observer](https://git.io/vNH54) | [Prototype](https://git.io/vNH5R) | [Flyweight](https://git.io/vNH5E) | [Delegate](https://git.io/vNH5u) | [Callback](https://git.io/vNhSY)
-[Memento](https://git.io/vNH5z)| | [Bridge](https://git.io/vNAFD) | [Multicast Delegate](https://git.io/vNH5i) | 
+[Chain of Responsibility](https://git.io/vNH7g) | [Factory Method](https://git.io/vNH7o) | [Adapter](https://git.io/vNH5C) | [Dependency Injection](https://git.io/vNH71) | [Functor](https://git.io/vNH7S) |
+[Strategy](https://git.io/vNdul) |[Abstract Factory](https://git.io/vNdu0) | [Bridge](https://git.io/vAfBP) | [Object Pool](https://git.io/vNH5U) | [Applicative](https://git.io/vNh7D) 
+[Command](https://git.io/vNH5I) | [Singleton](https://git.io/vNH5t) | [Flyweight](https://git.io/vNH5E) |  [Caching](https://github.com/oleh-zayats/design-patterns-swift/tree/master/Sources/Caching/Caching) | [Monad](https://git.io/vAeKb) 
+[State](https://git.io/vNH5G) | [Builder](https://git.io/vNH5n) | [Decorator](https://git.io/vNH5v) | [Private Class Data](https://git.io/vNH5l) | [Future & Promise](https://git.io/vNH5D) 
+[Observer](https://git.io/vNH54) | [Prototype](https://git.io/vNH5R) | [Proxy](https://git.io/vNH5Y) | [Delegate](https://git.io/vNH5u) | [Callback](https://git.io/vNhSY)
+[Memento](https://git.io/vNH5z)| | [Facade](https://git.io/vNH7i) | [Multicast Delegate](https://git.io/vNH5i) | 
 [Iterator](https://git.io/vNH59)| | [Composite](https://git.io/vAfB0) | [DataSource](https://git.io/vNH55)
 [Template Method](https://git.io/vNbdh) |  |  | [Lazy Loading](https://git.io/vNH5F)
 [Mediator](https://git.io/vNH5b) |  |  | [Throttling](https://git.io/vNH5N)
