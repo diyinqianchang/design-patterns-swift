@@ -16,7 +16,7 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 [State](https://git.io/vNH5G) | [Builder](https://git.io/vNH5n) | [Adapter](https://git.io/vNH5C) | [Private Class Data](https://git.io/vNH5l) | [Future & Promise](https://git.io/vNH5D) 
 [Observer](https://git.io/vNH54) | [Prototype](https://git.io/vNH5R) | [Flyweight](https://git.io/vNH5E) | [Delegate](https://git.io/vNH5u) | [Callback](https://git.io/vNhSY)
 [Memento](https://git.io/vNH5z)| | [Bridge](https://git.io/vNAFD) | [Multicast Delegate](https://git.io/vNH5i) | 
-[Iterator](https://git.io/vNH59)| | [Composite](https://git.io/vNAdE) | [DataSource](https://git.io/vNH55)
+[Iterator](https://git.io/vNH59)| | [Composite](https://git.io/vAfB0) | [DataSource](https://git.io/vNH55)
 [Template Method](https://git.io/vNbdh) |  |  | [Lazy Loading](https://git.io/vNH5F)
 [Mediator](https://git.io/vNH5b) |  |  | [Throttling](https://git.io/vNH5N)
 [Interpreter](https://git.io/vNbAk) |  |  | [Debouncing](https://git.io/vNxZX)
