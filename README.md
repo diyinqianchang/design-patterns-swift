@@ -25,9 +25,8 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 | 🚥 Concurrency |
 ------------ |
 | [Promise](https://git.io/vNH5D) |
-| Balking |   
 | Guarded Suspension |
-| Mutex |
+| [Mutex](https://git.io/vAffL) |
 | Semaphore |
 | Reader Writer Lock |
 
@@ -98,6 +97,6 @@ Each pattern is overviewed in a separate Markdown file which contains descriptio
 [Promise](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/FuturePromise/FuturePromise.md) </br> 
 Balking </br> 
 Guarded Suspension </br> 
-Mutex </br> 
+[Mutex](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Mutex/Mutex.md) </br> 
 Semaphore </br> 
 Reader Writer Lock </br> 
