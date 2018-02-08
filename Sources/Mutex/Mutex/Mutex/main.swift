@@ -149,7 +149,7 @@ func testMutex(_ type: MutexType) {
             mutex = NSLock()
     }
     
-    print(mutex.debugDescription)
+    debugPrint(mutex)
     
     let package = Package(count: 100, mutex: mutex)
     
