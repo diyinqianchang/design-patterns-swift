@@ -10,48 +10,72 @@ import Foundation
 
 /* Implementation: */
 
-protocol LockProtocol: NSLocking {
+protocol LockProtocol: NSLocking, CustomDebugStringConvertible {
     func tryLock() -> Bool
 }
 
-enum MutexError: Error {
-    case initialization
-    case initializationOfAttributes
-}
-
-final class Mutex: LockProtocol {
+final class PThreadMutex: LockProtocol {
     private var mtx = pthread_mutex_t()
     
-    init() throws {
+    init() {
         var mutexattr = pthread_mutexattr_t()
         
-        if pthread_mutexattr_init(&mutexattr) != 0 {
-            throw MutexError.initializationOfAttributes
-        }
+        let attrStatus = pthread_mutexattr_init(&mutexattr)
+        assert(attrStatus == 0, "Failed to init pthread mutex attr, code: \(attrStatus)")
         
         defer {
-            pthread_mutexattr_destroy(&mutexattr)
+            let status = pthread_mutexattr_destroy(&mutexattr)
+            assert(status == 0, "Failed to destroy mutex attr in \(self), code: \(status)")
         }
         
-        if pthread_mutex_init(&mtx, &mutexattr) != 0 {
-            throw MutexError.initialization
-        }
+        let status = pthread_mutex_init(&mtx, &mutexattr)
+        assert(status == 0, "Failed to init pthread mutex, code: \(status)")
     }
     
     deinit {
-        pthread_mutex_destroy(&mtx)
+        let result = pthread_mutex_destroy(&mtx)
+        assert(result == 0, "Failed to destroy mutex in \(self)")
     }
     
     func lock() {
-        pthread_mutex_lock(&mtx)
+        let result = pthread_mutex_lock(&mtx)
+        assert(result == 0, "Failed to lock in \(self)")
     }
     
     func unlock() {
-        pthread_mutex_unlock(&mtx)
+        let result = pthread_mutex_unlock(&mtx)
+        assert(result == 0, "Failed to unlock in \(self)")
     }
     
     func tryLock() -> Bool {
-        return pthread_mutex_trylock(&mtx) == 0
+        var returnVal = false
+        let status = pthread_mutex_trylock(&mtx)
+        switch status {
+        case 0:
+            returnVal = true
+        case EBUSY:
+            returnVal = false
+        default:
+            assertionFailure("Unexpected error on 'tryLock', code: \(status)")
+            returnVal = false
+        }
+        return returnVal
+    }
+}
+
+extension PThreadMutex {
+    var debugDescription: String {
+        return "\n" + String(describing: type(of: self)) + ":\n"
+    }
+}
+
+extension NSLock: LockProtocol {
+    func tryLock() -> Bool {
+        return self.try()
+    }
+    
+    override open var debugDescription: String {
+        return "\n" + String(describing: type(of: self)) + ":\n"
     }
 }
 
@@ -98,7 +122,7 @@ struct Person {
     
     func retrieveItems() {
         var items: Int = 0
-
+        
         while package.retrieve(), items < limit {
             print("\(name) retrieved 1 item from package. \(package.itemsLeft) items left.")
             items += 1
@@ -107,40 +131,26 @@ struct Person {
     }
 }
 
-// ***
+
 
 /* Usage: */
 
-/* 1. POSIX Mutex Lock */
-
-func testPosixMutexLock() {
-    do {
-        let mutex: LockProtocol = try Mutex()
-        let package = Package(count: 100, mutex: mutex)
-        
-        let nick = Person("Nick", package: package)
-        let dave = Person("Dave", package: package)
-        let oleh = Person("Oleh", package: package)
-        
-        oleh.retrieveItems()
-        nick.retrieveItems()
-        dave.retrieveItems()
-        
-    } catch {
-        print(error)
-    }
+enum MutexType {
+    case cocoa, posix
 }
 
-/* 2. NSLock */
-
-extension NSLock: LockProtocol {
-    func tryLock() -> Bool {
-        return self.try()
+func testMutex(_ type: MutexType) {
+    var mutex: LockProtocol
+    
+    switch type {
+        case .posix:
+            mutex = PThreadMutex()
+        case .cocoa:
+            mutex = NSLock()
     }
-}
-
-func testCocoaMutexLock() {
-    let mutex: LockProtocol = NSLock()
+    
+    print(mutex.debugDescription)
+    
     let package = Package(count: 100, mutex: mutex)
     
     let nick = Person("Nick", package: package)
@@ -152,7 +162,11 @@ func testCocoaMutexLock() {
     dave.retrieveItems()
 }
 
+/* 1. PThread Mutex Lock */
 
-// testPosixMutexLock()
-testCocoaMutexLock()
+testMutex(.posix)
+
+/* 2. Cocoa NSLock */
+
+testMutex(.cocoa)
 
