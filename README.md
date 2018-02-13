@@ -29,6 +29,7 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 | [Mutex](https://git.io/vAffL) |
 | Semaphore |
 | Reader Writer Lock |
+| [Two-Phase Termination](https://git.io/vA3QB) |
 
 ### Pattern Overview 
 Each pattern is overviewed in a separate Markdown file which contains description, structure, UML, advantages/disadvantages etc. Click on a pattern title to see more.
