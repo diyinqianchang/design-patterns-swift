@@ -25,11 +25,10 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 | 🚥 Concurrency |
 ------------ |
 | [Promise](https://git.io/vAGml) |
-| Guarded Suspension |
 | [Mutex](https://git.io/vAffL) |
-| [Semaphore](https://git.io/vAsRV) |
 | [Reader Writer Lock](https://git.io/vAsbb) |
 | [Two-Phase Termination](https://git.io/vA3QB) |
+| [Semaphore](https://git.io/vAsRV) |
 
 ### Pattern Overview 
 Each pattern is overviewed in a separate Markdown file which contains description, structure, UML, advantages/disadvantages etc. Click on a pattern title to see more.
@@ -96,8 +95,6 @@ Each pattern is overviewed in a separate Markdown file which contains descriptio
 > Concurrent programming patterns. </br> 
 
 [Promise](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/FuturePromise/FuturePromise.md) </br> 
-Balking </br> 
-Guarded Suspension </br> 
 [Mutex](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Mutex/Mutex.md) </br> 
 Semaphore </br> 
 Reader Writer Lock </br> 
