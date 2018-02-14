@@ -28,7 +28,7 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 | Guarded Suspension |
 | [Mutex](https://git.io/vAffL) |
 | [Semaphore](https://git.io/vAsRV) |
-| Reader Writer Lock |
+| [Reader Writer Lock](https://git.io/vAsbb) |
 | [Two-Phase Termination](https://git.io/vA3QB) |
 
 ### Pattern Overview 
