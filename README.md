@@ -24,7 +24,7 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 
 | 🚥 Concurrency |
 ------------ |
-| [Promise](https://git.io/vNH5D) |
+| [Promise](https://git.io/vAGml) |
 | Guarded Suspension |
 | [Mutex](https://git.io/vAffL) |
 | [Semaphore](https://git.io/vAsRV) |
