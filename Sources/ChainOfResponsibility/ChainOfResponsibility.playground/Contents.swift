@@ -80,10 +80,14 @@ final class EngineeringTeam {
         self.higherCompetencyTeam = higherCompetencyTeam
     }
     
+    @discardableResult
     func tryToResolve(_ task: JiraItem) -> Bool {
         if task.levelOfCompetency > level || !hasAvailableSoftwareEngineers {
+            
             if let team = higherCompetencyTeam {
+                print("\(task.code) is to difficult for \(self.level) team. Passing to \(team.level) team.")
                 return team.tryToResolve(task)
+                
             } else {
                 print("No team member available.")
                 return false
@@ -155,7 +159,7 @@ let backlog: [JiraItem] = [
 /* Work!  */
 backlog.forEach {
     /* Will resolve task or find more competent mate and hand it over */
-    let _ = juniors.tryToResolve($0)
+    juniors.tryToResolve($0)
 }
 
 
