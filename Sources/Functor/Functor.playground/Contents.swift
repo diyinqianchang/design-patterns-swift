@@ -6,10 +6,10 @@ import Foundation
 let integers = [2, 3, 4, 5]
 let multipliedResult = integers.map({ return $0 * 2 })
 
-// That's it, Array (any type that implements a 'map' function) is a Functor.
+// Array or any type that implements a 'map' function is a Functor.
 
-// But lets make a pure functional Functor
-// Haskell is using <$> operator, but that would not compile in Swift...
+// Lets make a pure functional Functor:
+// Note: Haskell is using <$> operator, but it would not compile in Swift
 
 infix operator <^>
 
@@ -27,8 +27,9 @@ let integersResult = toInt <^> strings
 
 /* 2. Custom types */
 
-// Custom type 'Result' is similar to Optional/Either, but returns Error instead,
-// so that you know why a request failed
+// As an example lets have a look at 'Result'. 
+// It's quite similar to Optional(value or nil)/Either(left value or right value)
+// but returns Error for you to know why a request failed
 
 enum Result<T> {
     case success(T)
