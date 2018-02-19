@@ -1,5 +1,5 @@
 //
-//  LittleHTTPClient.swift
+//  HTTPClient.swift
 //  Future
 //
 //  Created by Zayats Oleh on 1/27/18.
@@ -8,19 +8,18 @@
 
 import UIKit
 
-enum Result<T> {
-    case success(T)
-    case fail(Error)
+protocol HTTPClientProtocol {
+    func load(from url: URL) -> Future<Data>
 }
 
-class LittleHTTPClient {
+class HTTPClient: HTTPClientProtocol {
     private let session: URLSession
     
     init(session: URLSession = URLSession(configuration: .default)) {
         self.session = session
     }
     
-    func loadImage(from url: URL) -> Future<Data> {
+    func load(from url: URL) -> Future<Data> {
         return session.request(url: url)
     }
 }
@@ -32,8 +31,13 @@ extension URLSession {
         let task = dataTask(with: url) { data, _, error in
             if let error = error {
                 promise.reject(with: error)
+                
+            } else if let data = data {
+                promise.resolve(with: data)
+                
             } else {
-                promise.resolve(with: data ?? Data())
+                // handle response
+                // return custom error?
             }
         }
         task.resume()

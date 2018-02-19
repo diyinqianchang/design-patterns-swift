@@ -11,28 +11,23 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
-    private let http = LittleHTTPClient()
-    private let url = URL(string: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Meteor_Crater_-_Arizona.jpg")!
+    private let httpClient: HTTPClientProtocol = HTTPClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        http.loadImage(from: url).observe { result in
+        let url = URL(string: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Meteor_Crater_-_Arizona.jpg")!
+        
+        httpClient.load(from: url).observe { result in
             switch result {
                 
             case .success(let data):
-                main {
+                DispatchQueue.main.async {
                     self.imageView.image = UIImage(data: data)
                 }
-            case .fail(let error):
+            case .failure(let error):
                 print(error)
             }
         }
-    }
-}
-
-func main(_ f: @escaping () -> Void) {
-    DispatchQueue.main.async {
-        f()
     }
 }

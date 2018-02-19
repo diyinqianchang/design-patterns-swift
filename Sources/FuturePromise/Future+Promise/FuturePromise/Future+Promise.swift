@@ -1,6 +1,6 @@
 //
-//  Future.swift
-//  Future
+//  Future+Promise.swift
+//  Future+Promise
 //
 //  Created by Zayats Oleh on 1/27/18.
 //  Copyright © 2018 Oleh Zayats. All rights reserved.
@@ -23,9 +23,7 @@ class Future<T> {
     }
     
     private func report(result: Result<T>) {
-        for callback in callbacks {
-            callback(result)
-        }
+        callbacks.forEach { $0(result) }
     }
 }
 
@@ -35,6 +33,6 @@ class Promise<T>: Future<T> {
     }
     
     func reject(with error: Error) {
-        result = .fail(error)
+        result = .failure(error)
     }
 }
