@@ -1,50 +1,51 @@
 
 struct Instruction {
-    let name: String
+    let task: String
+    func execute() { print(task) }
 }
 
-/* IteratorProtocol to the next element and returns it, or `nil` if no next element
- * exists.
+struct Container<T> {
+    private let items: [T]
+    
+    init(with items: [T]) {
+        self.items = items
+    }
+}
+
+/* IteratorProtocol directly gives you access to the same elements in the same order
+ * as iterating over that sequence using a for-in loop.
  */
 
-struct InstructionsIterator: IteratorProtocol {
-    private let instructions: [Instruction]
-    private var current = 0
+struct ContainerIterator<T>: IteratorProtocol {
+    private let sequence: [T]
+    private var index = 0
     
-    init(_ instructions: [Instruction]) {
-        self.instructions = instructions
+    init(_ sequence: [T]) {
+        self.sequence = sequence
     }
     
-    mutating func next() -> Instruction? {
-        let next = instructions.count > current ? instructions[current] : nil
-        current += 1
+    mutating func next() -> T? {
+        defer { index += 1 }
+        let next = sequence.count > index ? sequence[index] : nil
         return next
+    }
+}
+
+extension Container: Sequence {
+    func makeIterator() -> ContainerIterator<T> {
+        return ContainerIterator(self.items)
     }
 }
 
 /* Usage: */
 
-struct InstructionsWrapper {
-    let instructions: [Instruction]
-}
+let instructions = [Instruction(task: "Analizing territory"),
+                    Instruction(task: "Analizing motion"),
+                    Instruction(task: "Destroying detected humans"),
+                    Instruction(task: "Launching laughing protocol: \"Mua-ha-ha!\"")]
 
-extension InstructionsWrapper: Sequence {
-    func makeIterator() -> InstructionsIterator {
-        return InstructionsIterator(instructions)
-    }
-}
+let machineInstructions = Container<Instruction>(with: instructions)
 
-let instructionsWrapper = InstructionsWrapper(instructions: [
-    Instruction(name: "Analizing"),
-    Instruction(name: "Seeking Humans..."),
-    Instruction(name: "Destroying!"),
-    Instruction(name: "Laughing. Mua-ha-ha.")
-])
-
-func execute(instruction: Instruction) {
-    print(instruction)
-}
-
-for instrution in instructionsWrapper {
-    execute(instruction: instrution)
+for instrution in machineInstructions {
+    instrution.execute()
 }
