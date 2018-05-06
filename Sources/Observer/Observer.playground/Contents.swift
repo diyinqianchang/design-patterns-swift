@@ -1,134 +1,151 @@
 
 import Foundation
 
-final class NotificationHandler<P> {
-    weak var subject: AnyObject?
-    let action: (AnyObject) -> (P) -> Void
-    init(subject: AnyObject, action: @escaping (AnyObject) -> (P) -> Void) {
-        self.subject = subject
-        self.action = action
-    }
-}
+/* I. KVO & Objective-C runtime */
 
-final class ObserverSet<P> {
-    private var handlers = [NotificationHandler<P>]()
-    private var queue = DispatchQueue(label: "com.zayats.oleh.observer", attributes: [])
-    
-    init() {}
-    
-    func attach(_ closure: @escaping (P) -> Void) -> NotificationHandler<P> {
-        return attach(self, { _ in closure })
-    }
-    
-    private func attach<T: AnyObject>(_ subject: T,
-                                      _ closure: @escaping (T) -> (P) -> Void) -> NotificationHandler<P> {
-        
-        let handler = NotificationHandler<P>(subject: subject, action: { closure($0 as! T) })
-        queue.sync { handlers.append(handler) }
-        return handler
-    }
-    
-    func detach(_ handler: NotificationHandler<P>) {
-        queue.sync { handlers = handlers.filter { $0 !== handler } }
-    }
-    
-    func notify(_ params: P) {
-        var toPerform = [(P) -> Void]()
-        queue.sync {
-            handlers.forEach {
-                if let subject: AnyObject = $0.subject {
-                    toPerform.append($0.action(subject))
-                }
-            }
-            handlers = handlers.filter { $0.subject != nil }
-        }
-        toPerform.forEach { $0(params) }
-    }
-}
+// An object that will be observed
 
-
-/* Usage: */
-
-/* Let's have some fun! We will create 2 classes:
- * Girl class changes clothes and Guy is observing the changes lol
- */
-
-/* the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes */
-final class Girl {
-    enum State {
-        case dressedNormally, dressedForRoleGames, naked
-    }
+// note: @objcMembers marks every property as @objc
+@objcMembers
+class KeyValueObservableUser: NSObject {
     
-    private var observers = ObserverSet<State>()
+    // note: Objective-C's dynamic dispatch system will be used
+    // KVO-enabled properties must be @objc dynamic
+    dynamic var name: String
     
-    var state: State = .dressedNormally {
-        didSet {
-            print("  Girl: <\(state)>")
-            observers.notify(state)
-        }
-    }
-    
-    init() {}
-    
-    func addObserverHandler(_ handler: @escaping (State) -> Void) -> NotificationHandler<State> {
-        return observers.attach(handler)
-    }
-    
-    func removeObserverHandler(_ handler: NotificationHandler<State>) {
-        observers.detach(handler)
-    }
-}
-
-/* observer observer */
-final class Guy {
-    private let girl: Girl
-    private var handler: NotificationHandler<Girl.State>?
-    private let name: String
-    
-    init(name: String, subject: Girl) {
-        self.girl = subject
+    init(_ name: String) {
         self.name = name
     }
-    
-    func startObserving() {
-        guard handler == nil else {
-            return
+}
+
+// tests:
+
+let user: KeyValueObservableUser = .init("Michael Keaton")
+
+var observation: NSKeyValueObservation? = user
+    .observe(\KeyValueObservableUser.name, options: [.old, .new]) { (user, change) in
+        if change.newValue == change.oldValue {
+            print("Name did not change.")
+        } else {
+            print("Name changed to \(change.newValue!)")
         }
-        
-        handler = girl.addObserverHandler { state in
-            switch state {
-            case .dressedNormally:
-                print("\(self.name): Nothing to see here.")
-            case .dressedForRoleGames:
-                print("\(self.name): Role games? This is interesting!")
-            case .naked:
-                print("\(self.name): Alert! The girl is naked!")
-            }
-        }
-    }
+}
+
+user.name = "Ben Waffleck"
+user.name = "Ben Waffleck"
+user.name = "Clint Eastwood"
+
+observation?.invalidate()
+
+user.name = "Kevin Bacon"
+
+print("\n\n\n")
+
+
+/* II. Custom Observable Type */
+
+typealias Handler<T, U> = (T, U) -> Void
+
+
+
+struct ObservableOptions: OptionSet { // similar to KVO's NSKeyValueObservingOptions
     
-    func stopObserving() {
-        guard let handler = self.handler else { return }
-        girl.removeObserverHandler(handler)
-        print("\(self.name): I'm out!")
+    static let initial = ObservableOptions(rawValue: 1 << 0)
+    static let old = ObservableOptions(rawValue: 1 << 1)
+    static let new = ObservableOptions(rawValue: 1 << 2)
+    
+    var rawValue: Int
+    
+    init(rawValue: Int) {
+        self.rawValue = rawValue
     }
 }
 
-/* Action! */
+class Observable<T> {
+    
+    var value: T {
+        didSet {
+            removeNilObserverCallbacks()
+            notifyCallbacks(value: oldValue, option: .old)
+            notifyCallbacks(value: value, option: .new)
+        }
+    }
+    
+    init(_ value: T) {
+        self.value = value
+    }
+    
+    // MARK: - Observer
+    
+    func add(observer: AnyObject, removeIfExists: Bool = true, options: [ObservableOptions] = [.new], _ closure: @escaping Handler<T, ObservableOptions>) {
+        if removeIfExists {
+            remove(observer: observer)
+        }
+        let callback = Callback(observer: observer, options: options, closure: closure)
+        callbacks.append(callback)
+        
+        if options.contains(.initial) {
+            closure(value, .initial)
+        }
+    }
+    
+    func remove(observer: AnyObject) {
+        callbacks = callbacks.filter { $0.observer !== observer }
+    }
+    
+    // MARK: - Callbacks
+    
+    private var callbacks = [Callback]()
+    
+    private class Callback {
+        weak var observer: AnyObject?
+        let options: [ObservableOptions]
+        let closure: Handler<T, ObservableOptions>
+        
+        init(observer: AnyObject, options: [ObservableOptions], closure: @escaping Handler<T, ObservableOptions>) {
+            self.observer = observer
+            self.options = options
+            self.closure = closure
+        }
+    }
+    
+    private func removeNilObserverCallbacks() {
+        callbacks = callbacks.filter { $0.observer != nil }
+    }
+    
+    private func notifyCallbacks(value: T, option: ObservableOptions) {
+        let callbacksToNotify = callbacks.filter {
+            $0.options.contains(option)
+        }
+        callbacksToNotify.forEach { $0.closure(value, option) }
+    }
+}
 
-let girl = Girl()
-let boris = Guy(name: " Boris", subject: girl)
-let victor = Guy(name: "Victor", subject: girl)
+// tests:
 
-boris.startObserving()
-victor.startObserving()
+class User {
+    let name: Observable<String>
+    init(_ name: String) {
+        self.name = Observable<String>(name)
+    }
+}
 
-girl.state = .naked
-girl.state = .dressedForRoleGames
-girl.state = .dressedNormally
+class Observer { }
 
-boris.stopObserving()
+let user2: User = .init("Michael Keaton")
 
-girl.state = .dressedForRoleGames
-girl.state = .dressedNormally
+var observer: Observer? = Observer()
+
+user2.name.add(observer: observer!, options: [.new]) { name, change in
+    if change == .new {
+        print("Name changed to \(name)")
+    }
+}
+
+user2.name.value = "Don Cheadle"
+user2.name.value = "Ron Swanson"
+
+observer = nil
+
+user2.name.value = "Ben Waffleck"
 
