@@ -27,7 +27,6 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 | [Promise](https://git.io/vAGml) |
 | [Mutex](https://git.io/vAffL) |
 | [Reader Writer Lock](https://git.io/vAsbb) |
-| [Two-Phase Termination](https://git.io/vA3QB) |
 | [Semaphore](https://git.io/vAsRV) |
 
 | 🏯 Architectural |
