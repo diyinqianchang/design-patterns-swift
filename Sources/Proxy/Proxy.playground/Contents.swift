@@ -2,41 +2,43 @@
 import UIKit
 
 enum InAppProduct {
-    case tutorialOne, tutorialTwo, tutorialThree, tutorialFour, tutorialFive, additionalContents
-    static let all: [InAppProduct] = [.tutorialOne, .tutorialTwo, .tutorialThree, .tutorialFour, .tutorialFive, .additionalContents]
+    case tutorialOne, tutorialTwo, tutorialThree, tutorialFour, tutorialFive, bonusContent
+    static let all: [InAppProduct] = [.tutorialOne, .tutorialTwo, .tutorialThree, .tutorialFour, .tutorialFive, .bonusContent]
 }
 
 extension InAppProduct: CustomStringConvertible {
     var description: String {
-        var itemDescription = String()
         switch self {
-        case .tutorialOne:
-            itemDescription = "Free tutorial."
-        case .tutorialTwo:
-            itemDescription = "Tutorial 2: Beginner."
-        case .tutorialThree:
-            itemDescription = "Tutorial 3: Advanced."
-        case .tutorialFour:
-            itemDescription = "Tutorial 3: More Depth."
-        case .tutorialFive:
-            itemDescription = "Tutorial 4: Pro."
-        case .additionalContents:
-            itemDescription = "Exclusive additional contents."
+        case .tutorialOne:   return "Free tutorial."
+        case .tutorialTwo:   return "Tutorial 2: Beginner."
+        case .tutorialThree: return "Tutorial 3: Advanced."
+        case .tutorialFour:  return "Tutorial 3: More Depth."
+        case .tutorialFive:  return "Tutorial 4: Pro."
+        case .bonusContent:  return "Exclusive additional contents."
         }
-        return itemDescription
     }
 }
 
 struct User {
     let name: String
-    let id: String
+    let token: String
 }
 
-struct Storage {
-    static var purchased: [String: Bool] {
-        return [ "000000000": false, "000000001": false, "000000002": true, "000000003": true ]
+protocol AuthStorage {
+    func isAuthorised(token: String) -> Bool
+}
+
+/* Obviously not an apropriate storage for sensitive data,
+   do not use something like this :)
+ */
+final class PurchasedStorage: AuthStorage {
+    private var purchased: [String: Bool] {
+        return ["000000000": false, "000000001": false, "000000002": true, "000000003": true]
     }
-    private init() {}
+    
+    func isAuthorised(token: String) -> Bool {
+        return purchased[token] ?? false
+    }
 }
 
 protocol PurchaseServiceProtocol {
@@ -45,41 +47,44 @@ protocol PurchaseServiceProtocol {
 
 final class RealPurchaseService: PurchaseServiceProtocol {
     func displayContents() {
-        InAppProduct.all.forEach {
-            print($0.description)
-        }
-        print("\n")
+        InAppProduct.all.forEach { print($0.description) }
     }
 }
 
 final class ProxyPurchaseService: PurchaseServiceProtocol {
-    private let realPurchaseService: RealPurchaseService
-    private var userAuthID: String
     
-    init(userAuthID: String) {
-        self.userAuthID = userAuthID
-        self.realPurchaseService = RealPurchaseService()
+    private let realPurchaseService: PurchaseServiceProtocol
+    private let authStorage: AuthStorage
+    private var authToken: String
+    
+    init(authToken: String = String(), realPurchaseService: PurchaseServiceProtocol, authStorage: AuthStorage) {
+        self.authToken = authToken
+        self.realPurchaseService = realPurchaseService
+        self.authStorage = authStorage
     }
     
-    func authorize(userAuthID: String) {
-        self.userAuthID = userAuthID
+    func authorize(withToken authToken: String) {
+        self.authToken = authToken
     }
     
     func displayContents() {
-        let purchased = Storage.purchased[userAuthID]
-        if purchased == true {
-            realPurchaseService.displayContents()
-        } else {
+        guard authStorage.isAuthorised(token: authToken) else {
             print(InAppProduct.tutorialOne.description + "\n")
+            return
         }
+        realPurchaseService.displayContents()
     }
 }
 
-let userWithSubscription = User(name: "Oleh", id: "000000003")
-let freeUser = User(name: "Volodymyr", id: "000000001")
+let freeUser = User(name: "Volodymyr", token: "000000001")
+let paidUser = User(name: "Michael", token: "000000003")
 
-let protectedPurchaseService = ProxyPurchaseService(userAuthID: freeUser.id)
+let authStorage = PurchasedStorage()
+let unprotectedPurchaseService = RealPurchaseService()
+let protectedPurchaseService = ProxyPurchaseService(realPurchaseService: unprotectedPurchaseService, authStorage: authStorage)
+
+protectedPurchaseService.authorize(withToken: freeUser.token)
 protectedPurchaseService.displayContents()
 
-protectedPurchaseService.authorize(userAuthID: userWithSubscription.id)
+protectedPurchaseService.authorize(withToken: paidUser.token)
 protectedPurchaseService.displayContents()

@@ -1,61 +1,28 @@
 
-import Foundation
+import UIKit
 
-// abstract helper code:
-
-protocol Process { }
-struct Component { }
-struct Subsystem { func launch(process: Process) {} }
-struct SystemProcess: Process { }
-
-class Module {
-    let configuration: Component
-    let data: Component
-    var processSystem = Subsystem()
-    init(configuration: Component, data: Component) {
-        self.configuration = configuration
-        self.data = data
+struct ViewFactory {
+    static func makeFancyView() -> UIView {
+        let fancyView = UIView(frame: .zero)
+        /* Complex customization, adding subviews, rendering stuff
+         */
+        return fancyView
     }
 }
 
-// Usage:
-
-// 1. Self-executing closure
-
-class System {
-    private lazy var module: Module = {
-        let module = Module(configuration: Component(), data: Component())
-        // ...
-        return module
-    }()
+final class ViewController: UIViewController {
+    /* Defering heavy allocation until we need it
+       (not so heavy in this particular case, but lets imagine tons of allocations and very complex view hierarchy)
+     */
+    lazy var fancyComplexView = ViewFactory.makeFancyView()
     
-    func launch(process: Process) {
-        
-        // lazy loading triggered here:
-        self.module.processSystem.launch(process: process)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func presentFancyView() {
+        fancyComplexView.frame = view.frame
+        view.addSubview(fancyComplexView)
+        fancyComplexView.center = view.center
     }
 }
-
-// 2. Using a factory method
-
-class System2 {
-    private lazy var module: Module = self.makeModule()
-    
-    func launch(process: Process) {
-        self.module.processSystem.launch(process: process)
-    }
-    
-    private func makeModule() -> Module {
-        let module = Module(configuration: Component(), data: Component())
-        // ...
-        return module
-    }
-}
-
-let system = System()
-// module is not loaded yet
-
-let process  = SystemProcess()
-system.launch(process: process)
-
-
