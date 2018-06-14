@@ -14,7 +14,7 @@ All examples are located [HERE](https://github.com/oleh-zayats/design-patterns-s
 [Strategy](https://git.io/vNdul) |[Abstract Factory](https://git.io/vNdu0) | [Bridge](https://git.io/vAfBP) | [Object Pool](https://git.io/vNH5U) | [Applicative](https://git.io/vNh7D) 
 [Command](https://git.io/vNH5I) | [Singleton](https://git.io/vNH5t) | [Flyweight](https://git.io/vNH5E) |  [Caching](https://github.com/oleh-zayats/design-patterns-swift/tree/master/Sources/Caching/Caching) | [Monad](https://git.io/vAeKb) 
 [State](https://git.io/vNH5G) | [Builder](https://git.io/vNH5n) | [Decorator](https://git.io/vNH5v) | [Private Class Data](https://git.io/vNH5l) | [Future & Promise](https://git.io/vNH5D) 
-[Observer](https://git.io/vNH54) | [Prototype](https://git.io/vNH5R) | [Proxy](https://git.io/vNH5Y) | [Delegate](https://git.io/vNH5u) | [Callback](https://git.io/vNhSY)
+[Observer](https://git.io/vNH54) | [Prototype](https://git.io/vNH5R) | [Proxy](https://git.io/vNH5Y) | [Delegate](https://git.io/vNH5u) 
 [Memento](https://git.io/vNH5z)| | [Facade](https://git.io/vNH7i) | [Multicast Delegate](https://git.io/vNH5i) | 
 [Iterator](https://git.io/vNH59)| | [Composite](https://git.io/vAfB0) | [DataSource](https://git.io/vNH55)
 [Template Method](https://git.io/vNbdh) |  |  | [Lazy Loading](https://git.io/vNH5F)
@@ -95,7 +95,6 @@ Each pattern is overviewed in a separate Markdown file which contains descriptio
 
 [Monad](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Monad/Monad.md) </br> 
 [Future & Promise](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/FuturePromise/FuturePromise.md) </br> 
-[Callback](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Callback/Callback.md) </br> 
 [Functor](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Functor/Functor.md) </br> 
 [Applicative](https://github.com/oleh-zayats/design-patterns-swift/blob/master/Sources/Applicative/Applicative.md) </br> 
 
